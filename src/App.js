@@ -48,7 +48,7 @@ function App() {
       <GlobalStyle />
       <Container>
         <aside>
-          <Header />
+          <Header profile={profile}/>
           {pageFlow === 1 ? (
             <FormularioLogin setPageFlow={setPageFlow} setProfile={setProfile} />
           ) : (

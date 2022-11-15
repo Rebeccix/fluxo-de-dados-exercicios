@@ -10,8 +10,6 @@ const TelaDaPostagem = (props) => {
       {
         profile.name && profile.avatar ? 
         <>
-          <TitleHeader>{profile.name}</TitleHeader>
-          <Image src={profile.avatar} />
         </>
         :
         <>
@@ -23,12 +21,12 @@ const TelaDaPostagem = (props) => {
       <>
       { 
         post.map((i) => (
-          <>
+          <span>
             <TitleHeader>{i.title}</TitleHeader>
             <Image src={i.url} />
             <Description>{i.description}</Description>
             <button onClick={() => deletePost(i)}>Deletar post</button>
-          </>
+          </span>
         ))
       }
       </>
