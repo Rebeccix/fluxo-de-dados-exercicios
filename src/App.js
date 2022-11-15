@@ -20,6 +20,29 @@ const Container = styled.div`
 
 function App() {
   const [pageFlow, setPageFlow] = useState(1);
+  const [post, setPost] = useState([])
+  const [profile, setProfile] = useState({
+    name:'',
+    avatar:''
+  })
+
+
+  const addPost = (current) => {
+    if (post.length === 0) {
+      setPost([{...current}])
+    } else {
+      post.map(() => {
+        setPost([...post, current])
+      })
+    }
+  }
+
+  const deletePost = (current) => {
+    const filtered = post.filter((posts) => posts.title !== current.title);
+    setPost([...filtered])
+  }
+
+
   return (
     <>
       <GlobalStyle />
@@ -27,12 +50,12 @@ function App() {
         <aside>
           <Header />
           {pageFlow === 1 ? (
-            <FormularioLogin setPageFlow={setPageFlow} />
+            <FormularioLogin setPageFlow={setPageFlow} setProfile={setProfile} />
           ) : (
-            <FormularioPostagem />
+            <FormularioPostagem addPost={addPost}/>
           )}
         </aside>
-        <TelaDaPostagem />
+        <TelaDaPostagem profile={profile} post={post} deletePost={deletePost}/>
       </Container>
     </>
   );
